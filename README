@@ -1,0 +1,14 @@
+# README
+# For original problem please see
+#
+# https://leetcode.com/problems/largest-number/description/
+#
+#
+# Source File: largestNumber.c
+#
+# Solution in C is written in the function 
+# char* largestNumber(int* nums, int numsSize) in file largestNumber.c
+#
+# To compile: gcc largestNumber.c -o largest
+# To run:     ./largest
+# To run test suits on functions uncomment the lines in main()
