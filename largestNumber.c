@@ -2,7 +2,7 @@
 *  Author: Johnny Chan
 *  Date:   11/15/2017
 *  Largest Number (LeetCode No. 179):
-*  Given a list of non negative integers, arrange them such that they form the 
+*  Given a list of non-negative integers, arrange them such that they form the 
 *  largest number.
 
 *  For example, given [3, 30, 34, 5, 9], the largest formed number is 9534330.
@@ -124,6 +124,13 @@ void printArray(int arr[], int size) {
 	printf("\n");
 }
 
+void printCharArr(char* arr, int size) {
+	for (int i = 0; i < size; ++i) {
+		printf("%c ", *(arr + i));
+	}
+	printf("\n");
+}
+
 int isSorted(int arr[], int size) {
 	for (int i = 0; i < size - 1; ++i) 
 		if (arr[i] < arr[i+1]) return false;
@@ -149,34 +156,51 @@ void test_quickSort() {
 	//assert(isSorted(arr1, 10));
 }
 
+// return the number of digits for the given integer
+int countDigit(int num) {
+	if (!num) return 1;
+	int count = 0;
+	while (num) {
+		num /= 10;
+		count++;
+	}
+	return count;
+}
+
 char* largestNumber(int* nums, int numsSize) {
-	char buff[5];
-	char result[20];
 	quickSort(nums, 0, numsSize-1);
 	
+	int numsTotalDigit = 0;
 	for (int i = 0; i < numsSize; ++i) {
+		numsTotalDigit += countDigit(*nums + i);
+	}
+
+	char *result = malloc(numsTotalDigit);
+	for (int i = 0; i < numsSize; ++i) {
+		char* buff = malloc(countDigit(*nums + i));
 		sprintf(buff, "%d", *nums++);
 		strcat(result, buff); 
+		free(buff);
 	}
-	printArray(nums, numsSize);
+	printCharArr(result, numsTotalDigit);
 	printf("%s\n", result);
-	return &result;
+	return result;
 }
 
 void test_largestNumber() {
 	int arr[] = {3, 30, 34, 5, 9};
 	largestNumber(arr, 5);
-	printArray(arr, 5);
+	// printArray(arr, 5);
 }
 
 int main() {
-	/*
+	
 	test_isLarger();
 	printf("isLarge is good!\n");
 	
 	test_quickSort();
 	printf("quickSort is good!\n");
-	*/
+	
 	test_largestNumber();
 	printf("largestNumber is good!\n");
 	
