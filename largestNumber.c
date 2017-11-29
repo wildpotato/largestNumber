@@ -21,7 +21,7 @@
 /*
 *  Returns true (1) if ab is not less than ba, returns false (0) otherwise
 */
-int isLarger(int a, int b) {
+static int isLarger(int a, int b) {
 	char string_a[10], string_b[10];
 	char* a_ptr = string_a;
 	char* b_ptr = string_b;
@@ -56,7 +56,7 @@ int isLarger(int a, int b) {
 	return true; // a and b both reach end simultaneously 
 }
 
-void swap(int* arr, int a, int b) {
+static inline void swap(int* arr, int a, int b) {
 	int temp = *(arr + a);
 	*(arr + a) = *(arr + b);
 	*(arr + b) = temp;
@@ -66,7 +66,7 @@ void swap(int* arr, int a, int b) {
 *  Partition the subarray arr[lo...hi] so that arr[lo...j-1] <= arr[j] <= 
 *  arr[j+1...hi] and return the index j
 */
-int partition(int arr[], int lo, int hi) {
+static int partition(int arr[], int lo, int hi) {
 	int i = lo;
 	int j = hi + 1;
 	int cmp = arr[lo];
@@ -89,7 +89,7 @@ int partition(int arr[], int lo, int hi) {
 /*
 *  Sorts the array in descending order using isLarger() as comparable
 */
-void quickSort(int arr[], int lo, int hi)
+static void quickSort(int arr[], int lo, int hi)
 {
    if (lo < hi) 
    {
@@ -100,7 +100,7 @@ void quickSort(int arr[], int lo, int hi)
    }
 }
 
-void test_isLarger() {
+static void test_isLarger() {
 	assert(!isLarger(1, 5));
 	assert(isLarger(4, 3));
 	assert(isLarger(33, 31));
@@ -118,26 +118,26 @@ void test_isLarger() {
 	assert(!isLarger(30, 3));
 }
 
-void printArray(int arr[], int size) {
+static void printArray(int arr[], int size) {
 	for (int i = 0; i < size; ++i) 
 		printf("%d ", arr[i]);
 	printf("\n");
 }
 
-void printCharArr(char* arr, int size) {
+static void printCharArr(char* arr, int size) {
 	for (int i = 0; i < size; ++i) {
 		printf("%c ", *(arr + i));
 	}
 	printf("\n");
 }
 
-int isSorted(int arr[], int size) {
+static int isSorted(int arr[], int size) {
 	for (int i = 0; i < size - 1; ++i) 
 		if (arr[i] < arr[i+1]) return false;
 	return true;
 }
 
-void test_quickSort() {
+static void test_quickSort() {
 	int arr1[] = {7, 0, 8, 1, 2, 9, 3, 5, 6, 4};
 	printf("--------------------------\n");
 	printf("before: ");
@@ -157,7 +157,7 @@ void test_quickSort() {
 }
 
 // return the number of digits for the given integer
-int countDigit(int num) {
+static int countDigit(int num) {
 	if (!num) return 1;
 	int count = 0;
 	while (num) {
@@ -187,7 +187,7 @@ char* largestNumber(int* nums, int numsSize) {
 	return result;
 }
 
-void test_largestNumber() {
+static void test_largestNumber() {
 	int arr[] = {3, 30, 34, 5, 9};
 	largestNumber(arr, 5);
 	// printArray(arr, 5);
